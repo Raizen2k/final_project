@@ -51,6 +51,7 @@ $liste = getListeCategorie();
                                     </span>
                                 <?php } ?>
                             </h6>
+                            <a href="fiche_objet.php?id_objet=<?= $data['id_objet'] ?>" class="btn btn-primary">Voir plus</a>
                         </div>
                     </article>
                 </div>
