@@ -41,4 +41,77 @@ CREATE TABLE obj_emprunt(
 );
 
 
+INSERT INTO obj_membres (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
+('Alice Dupont', '1990-05-12', 'F', 'alice.dupont@example.com', 'Paris', 'pass123', 'alice.jpg'),
+('Bruno Martin', '1985-08-22', 'M', 'bruno.martin@example.com', 'Lyon', 'pass456', 'bruno.jpg'),
+('Carla Moreau', '1992-11-03', 'F', 'carla.moreau@example.com', 'Marseille', 'pass789', 'carla.jpg'),
+('David Lefevre', '1988-02-15', 'M', 'david.lefevre@example.com', 'Lille', 'pass321', 'david.jpg');
+
+INSERT INTO obj_categorie_objet (nom_categorie) VALUES
+('esthetique'),
+('bricolage'),
+('mecanique'),
+('cuisine');
+
+INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
+('Sèche-cheveux', 1, 1),
+('Tondeuse', 1, 1),
+('Miroir LED', 1, 1),
+('Perceuse Bosch', 2, 1),
+('Tournevis', 2, 1),
+('Clé à molette', 2, 1),
+('Pompe à vélo', 3, 1),
+('Crics voiture', 3, 1),
+('Mixeur', 4, 1),
+('Robot pâtissier', 4, 1);
+
+INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
+('Lime à ongles électrique', 1, 2),
+('Brosse à cheveux', 1, 2),
+('Marteau', 2, 2),
+('Pistolet à colle', 2, 2),
+('Scie sauteuse', 2, 2),
+('Clé dynamométrique', 3, 2),
+('Compresseur', 3, 2),
+('Grille-pain', 4, 2),
+('Friteuse', 4, 2),
+('Blender', 4, 2);
+
+-- Membre 3 : Carla
+INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
+('Lisseur', 1, 3),
+('Brosse visage', 1, 3),
+('Épilateur', 1, 3),
+('Scie circulaire', 2, 3),
+('Niveau laser', 2, 3),
+('Crics hydrauliques', 3, 3),
+('Cric bouteille', 3, 3),
+('Micro-ondes', 4, 3),
+('Cafetière', 4, 3),
+('Balance cuisine', 4, 3);
+
+-- Membre 4 : David
+INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
+('Brosse lissante', 1, 4),
+('Ponceuse', 2, 4),
+('Meuleuse', 2, 4),
+('Tournevis électrique', 2, 4),
+('Pont élévateur', 3, 4),
+('Clé plate', 3, 4),
+('Four', 4, 4),
+('Casserole', 4, 4),
+('Poêle', 4, 4),
+('Autocuiseur', 4, 4);
+
+INSERT INTO obj_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
+(1, 2, '2025-07-01', '2025-07-10'),
+(5, 3, '2025-07-02', '2025-07-08'),
+(8, 4, '2025-07-03', '2025-07-09'),
+(12, 1, '2025-07-04', '2025-07-11'),
+(16, 3, '2025-07-05', '2025-07-13'),
+(23, 1, '2025-07-06', '2025-07-15'),
+(27, 2, '2025-07-07', '2025-07-14'),
+(31, 4, '2025-07-08', '2025-07-16'),
+(35, 1, '2025-07-09', '2025-07-17'),
+(39, 2, '2025-07-10', '2025-07-18');
 
