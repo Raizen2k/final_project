@@ -22,7 +22,7 @@ $liste = getListeCategorie();
 
             <form class="d-flex" action="accueil.php" method="post">
                 <select class="form-select me-2" name="categorie" required>
-                    <option value="" disabled selected>Choisir une catégorie</option>
+                    <option value="0" disabled selected>Choisir une catégorie</option>
                     <?php while ($res = mysqli_fetch_assoc($liste)) { ?>
                         <option value="<?= $res['id_categorie'] ?>">
                             <?= htmlspecialchars($res['nom_categorie']) ?>
@@ -31,6 +31,7 @@ $liste = getListeCategorie();
                 </select>
                 <button type="submit" class="btn btn-outline-primary">Filtrer</button>
             </form>
+            <a href="ajouter_objet.php">Ajouter un objet</a>
         </div>
     </nav>
 
