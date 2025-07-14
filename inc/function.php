@@ -1,6 +1,10 @@
 <?php
 include 'base.php';
 
+$css='<link rel="stylesheet" href="../assets/css/style.css">';
+$bootstrap="<link rel='stylesheet' href='../assets/bootstrap/css/bootstrap.min.css'>";
+
+
 function login($mail, $mdp)
 {
     $connexion = base();
@@ -67,7 +71,6 @@ function filtreParCategorie($categorie)
 {
     $requette = "SELECT * FROM obj_objet WHERE id_categorie = '%s'";
     $requette = sprintf($requette, $categorie);
-    echo $requette;
     return mysqli_query(base(), $requette);
 }
 

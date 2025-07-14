@@ -54,24 +54,24 @@ INSERT INTO obj_categorie_objet (nom_categorie) VALUES
 ('cuisine');
 
 INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
-('Sèche-cheveux', 1, 1),
+('Seche-cheveux', 1, 1),
 ('Tondeuse', 1, 1),
 ('Miroir LED', 1, 1),
 ('Perceuse Bosch', 2, 1),
 ('Tournevis', 2, 1),
-('Clé à molette', 2, 1),
-('Pompe à vélo', 3, 1),
+('Cle a molette', 2, 1),
+('Pompe a velo', 3, 1),
 ('Crics voiture', 3, 1),
 ('Mixeur', 4, 1),
-('Robot pâtissier', 4, 1);
+('Robot patissier', 4, 1);
 
 INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
-('Lime à ongles électrique', 1, 2),
-('Brosse à cheveux', 1, 2),
+('Lime a ongles electrique', 1, 2),
+('Brosse a cheveux', 1, 2),
 ('Marteau', 2, 2),
-('Pistolet à colle', 2, 2),
+('Pistolet a colle', 2, 2),
 ('Scie sauteuse', 2, 2),
-('Clé dynamométrique', 3, 2),
+('Cle dynamometrique', 3, 2),
 ('Compresseur', 3, 2),
 ('Grille-pain', 4, 2),
 ('Friteuse', 4, 2),
