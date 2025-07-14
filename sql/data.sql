@@ -39,6 +39,7 @@ CREATE TABLE obj_emprunt(
     FOREIGN KEY (id_objet) REFERENCES obj_objet(id_objet),
     FOREIGN KEY (id_membre) REFERENCES obj_membres(id_membre)
 );
+ALTER TABLE obj_emprunt ADD etat int;
 
 
 INSERT INTO obj_membres (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
@@ -103,15 +104,27 @@ INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Poêle', 4, 4),
 ('Autocuiseur', 4, 4);
 
-INSERT INTO obj_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
-(1, 2, '2025-07-01', '2025-07-10'),
-(5, 3, '2025-07-02', '2025-07-08'),
-(8, 4, '2025-07-03', '2025-07-09'),
-(12, 1, '2025-07-04', '2025-07-11'),
-(16, 3, '2025-07-05', '2025-07-13'),
-(23, 1, '2025-07-06', '2025-07-15'),
-(27, 2, '2025-07-07', '2025-07-14'),
-(31, 4, '2025-07-08', '2025-07-16'),
-(35, 1, '2025-07-09', '2025-07-17'),
-(39, 2, '2025-07-10', '2025-07-18');
+INSERT INTO obj_emprunt (id_objet, id_membre, date_emprunt, date_retour, etat) VALUES
+(1, 2, '2025-07-01', '2025-07-05', 1),
+(4, 3, '2025-07-02', '2025-07-06', 1),
+(7, 4, '2025-07-03', '2025-07-07', 0),
+(10, 1, '2025-07-04', '2025-07-08', 1),
+(13, 2, '2025-07-05', '2025-07-09', 1),
+(16, 3, '2025-07-06', '2025-07-10', 2),
+(19, 4, '2025-07-07', '2025-07-11', 1),
+(22, 1, '2025-07-08', '2025-07-12', 1),
+(25, 2, '2025-07-09', '2025-07-13', 0),
+(28, 3, '2025-07-10', '2025-07-14', 1);
 
+
+INSERT INTO obj_emprunt (id_objet, id_membre, date_emprunt, date_retour, etat) VALUES
+(2, 3, '2025-07-11', NULL, NULL),
+(5, 1, '2025-07-12', NULL, NULL),
+(8, 4, '2025-07-13', NULL, NULL),
+(11, 2, '2025-07-13', NULL, NULL),
+(14, 3, '2025-07-13', NULL, NULL),
+(17, 1, '2025-07-14', NULL, NULL),
+(20, 4, '2025-07-14', NULL, NULL),
+(23, 2, '2025-07-14', NULL, NULL),
+(26, 3, '2025-07-14', NULL, NULL),
+(29, 1, '2025-07-14', NULL, NULL);

@@ -2,8 +2,7 @@
 include("../inc/function.php");
 session_start();
 $membre = getMembre($_SESSION['id_membre']);
-$resultat = ($_SERVER['REQUEST_METHOD'] == 'POST') ?
-    filtreParCategorie($_POST['categorie']) : getListeObjet();
+$resultat = ($_SERVER['REQUEST_METHOD'] == 'POST') ?filtreParCategorie($_POST['categorie']) : getListeObjet();
 $liste = getListeCategorie();
 ?>
 <!DOCTYPE html>
@@ -43,7 +42,7 @@ $liste = getListeCategorie();
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <article class="card shadow-sm h-100">
                         <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title"><?= htmlspecialchars($data['nom_objet']) ?></h5>
+                            <h5 class="card-title"><?= $data['nom_objet'] ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <?php if (enCours($data['id_objet']) == 0) { ?>
                                     <span class="badge bg-success">Disponible</span>

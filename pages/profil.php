@@ -2,7 +2,9 @@
 include("../inc/function.php");
 session_start();
 $membre = getMembre($_SESSION['id_membre']);
-$cat = getListeCategorie();
+$objets = getToutObjet($membre['id_membre']);
+$encours= getObjetsEnCours($_SESSION['id_membre']);
+var_dump($encours);
 
 ?>
 <!DOCTYPE html>
@@ -26,14 +28,24 @@ $cat = getListeCategorie();
 
     <a href="accueil.php">Retour</a>
     <h2>Liste des objet par categorie</h2>
-    <?php while ($data_cat = mysqli_fetch_assoc($cat)) {
-        $objetParCat = getObjetParCategorie( $membre['id_membre'],$data_cat['id_categorie']);
-        echo $data_cat['nom_categorie'] . "<br>";
-        while ($objetParCat && $data_objet = mysqli_fetch_assoc($objetParCat)) {?>
-            <p><?=$data_objet['nom_objet']?></p>
-
-        <?php } ?>
+    <?php while ($data = mysqli_fetch_assoc($objets)) { ?>
+        <p><?= $data['nom_objet']?>________________categorie :  <?= $data['nom_categorie']?></p>
     <?php } ?>
+
+    <h2>Liste des mes emprunt en cours </h2>
+    <?php while ($objetEnCours=mysqli_fetch_assoc($encours)) { ?>
+            <p><?= $objetEnCours['nom_objet']?>________date_retour : 
+            <?= $objetEnCours['date_retour'] ?>________
+            <form action="../traitement/traitement_rendre.php" method="post">
+                <select name="etat">
+                    <option value="0">Ok</option>
+                    <option value="1">Abimé</option>
+                </select>
+                <input type="hidden" name="id_objet" value="<?= $objetEnCours['id_objet']?>">
+                <input type="submit" value="Rendre">
+            </form>
+        </p>
+        <?php }?>
 </body>
 
 </html>
