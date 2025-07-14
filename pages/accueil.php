@@ -32,6 +32,7 @@ $liste = getListeCategorie();
                 <button type="submit" class="btn btn-outline-primary">Filtrer</button>
             </form>
             <a href="ajouter_objet.php">Ajouter un objet</a>
+            <a href="recherche.php">Rechercher</a>
         </div>
     </nav>
 

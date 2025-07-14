@@ -1,8 +1,8 @@
 <?php
 include 'base.php';
 
-$css='<link rel="stylesheet" href="../assets/css/style.css">';
-$bootstrap="<link rel='stylesheet' href='../assets/bootstrap/css/bootstrap.min.css'>";
+$css = '<link rel="stylesheet" href="../assets/css/style.css">';
+$bootstrap = "<link rel='stylesheet' href='../assets/bootstrap/css/bootstrap.min.css'>";
 
 
 function login($mail, $mdp)
@@ -62,7 +62,6 @@ function enCours($id_objet)
     if ((mysqli_num_rows($resultat)) == 0) {
         return 0;
     } else {
-        echo mysqli_fetch_assoc($resultat)['date_retour'];
         return mysqli_fetch_assoc($resultat)['date_retour'];
     }
 }
@@ -78,4 +77,40 @@ function getListeCategorie()
 {
     $requette = "SELECT * FROM obj_categorie_objet";
     return mysqli_query(base(), $requette);
+}
+
+function recherche($nom, $categorie, $disponible)
+{
+
+    $requette = "SELECT * FROM obj_objet o 
+    JOIN obj_categorie_objet c ON o.id_categorie = c.id_categorie 
+    WHERE 1=1";
+    if ($nom != NULL) {
+        $requette .= " AND nom_objet LIKE '%$nom%'";
+    }
+    if ($categorie != NULL) {
+        $requette .= " AND nom_categorie = '$categorie'";
+    }
+    if ($disponible == 1 )
+    {
+        $requette2=rechercherParDisponible($nom, $categorie);
+        return mysqli_query(base(), $requette2);
+    }
+    return mysqli_query(base(), $requette);
+}
+
+function rechercherParDisponible($nom, $categorie)
+{
+     $requette = "SELECT * FROM obj_objet o 
+    JOIN obj_categorie_objet c ON o.id_categorie = c.id_categorie 
+    JOIN obj_emprunt e ON o.id_objet = e.id_objet 
+    WHERE 1=1";
+     if ($nom != NULL) {
+        $requette .= " AND nom_objet LIKE '%$nom%'";
+    }
+    if ($categorie != NULL) {
+        $requette .= " AND nom_categorie = '$categorie'";
+    }
+    return $requette;
+    
 }

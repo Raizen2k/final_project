@@ -11,3 +11,12 @@ creeer la base de donnees
         (id_emprunt,id_objet,id_membre,date_emprunt,date_retour)
 inserer les donnees
 creeer les pages
+barre de recherche
+    nom de l objet
+    categorie 
+    case a cocher disponible 
+
+faire un navbar pour circuler
+    accueil
+    profil
+    recherche

@@ -30,6 +30,7 @@ $categories = getListeCategorie();
         </div>
         <button type="submit">Ajouter</button>
     </form>
+    
 </body>
 
 </html>
