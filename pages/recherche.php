@@ -31,6 +31,8 @@ if (isset($_GET["oui"])) {
 </head>
 
 <body class="bg-light">
+    <?php include("../inc/nav.php");?>
+
     <div class="container mt-5">
         <h1 class="mb-4">Formulaire de recherche</h1>
         <form action="recherche.php?oui=1" method="post" class="border p-4 rounded shadow-sm bg-white">

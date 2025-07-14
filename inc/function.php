@@ -2,7 +2,7 @@
 include 'base.php';
 
 $css = '<link rel="stylesheet" href="../assets/css/style.css">';
-$bootstrap = "<link rel='stylesheet' href='../assets/bootstrap/css/bootstrap.min.css'>";
+$bootstrap = "<link rel='stylesheet' href='../../bootstrap/css/bootstrap.min.css'>";
 
 
 function login($mail, $mdp)
@@ -56,7 +56,7 @@ function getListeObjet()
 
 function enCours($id_objet)
 {
-    $requette = "SELECT * FROM obj_emprunt WHERE id_objet = %s ";
+    $requette = "SELECT * FROM obj_emprunt WHERE id_objet = %s AND date_retour > NOW()";
     $requette = sprintf($requette, $id_objet);
     $resultat = mysqli_query(base(), $requette);
     if ((mysqli_num_rows($resultat)) == 0) {
@@ -113,4 +113,95 @@ function rechercherParDisponible($nom, $categorie)
     }
     return $requette;
     
+}
+
+
+function authorized_type($file)
+{
+    $allowedMimeTypes = ['video/mp4', 'video/hvec', 'video/mov'];
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = finfo_file($finfo, $file['tmp_name']);
+    finfo_close($finfo);
+
+    if (!in_array($mime, $allowedMimeTypes)) {
+        die('Type de fichier non autorisé : ' . $mime);
+    }
+
+    return true;
+}
+
+function isOwner($idMembre , $idObjet){
+    $requette = "SELECT * FROM obj_objet WHERE id_membre = %s AND id_objet = %s";
+    $requette = sprintf($requette, $idMembre , $idObjet);
+    $resultat = mysqli_query(base(), $requette);
+    if (mysqli_num_rows($resultat) > 0) {
+        return true;
+    } else return false;
+}
+
+function imageObjet($id_objet){
+    $requette = "SELECT * FROM obj_images_objet WHERE id_objet = %s";
+    $requette = sprintf($requette, $id_objet);
+    return mysqli_query(base(), $requette);
+}
+
+function statObjet($id_objet){
+    $requette = "SELECT * FROM obj_emprunt WHERE id_objet = %s";
+    $requette = sprintf($requette, $id_objet);
+    return mysqli_query(base(), $requette);
+}
+
+function getObjet($id_objet){
+    $requette = "SELECT * FROM v_obj_objet WHERE id_objet = %s";
+    $requette = sprintf($requette, $id_objet);
+    $resultat = mysqli_query(base(), $requette);
+    if (mysqli_num_rows($resultat) > 0) {
+        return mysqli_fetch_assoc($resultat);
+    } else return false;
+}
+
+
+function new_name($file)
+{
+    $originalName = pathinfo($file['name'], PATHINFO_FILENAME);
+    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    return $originalName . '_' . uniqid() . '.' . $extension;
+}
+
+function getToutObjet($id_membre)
+{
+    $requette = "SELECT o.nom_objet,c.nom_categorie FROM obj_objet o 
+    JOIN obj_categorie_objet c ON o.id_categorie = c.id_categorie
+     WHERE o.id_membre = '%s' GROUP BY o.id_categorie ";
+
+    $requette = sprintf($requette, $id_membre);
+    return mysqli_query(base(), $requette);
+}   
+
+function getObjetParCategorie($id_membre, $id_categorie)
+{
+    $requette = "SELECT o.nom_objet,c.nom_categorie FROM obj_objet o 
+    JOIN obj_categorie_objet c ON o.id_categorie = c.id_categorie
+     WHERE o.id_membre = '%s' AND c.id_categorie = '%s'";
+
+    $requette = sprintf($requette, $id_membre, $id_categorie);
+    return mysqli_query(base(), $requette);
+}
+
+
+function getLastImg($idImg){
+    $querry = "SELECT * FROM obj_images_objet WHERE id_objet = %s LIMIT 1";
+    $querry = sprintf($querry , $idImg );
+    $result = mysqli_query(base() , $querry );
+    if ( mysqli_num_rows($result) == 0 ) {
+        return "default.png";
+    } else return mysqli_fetch_assoc($result)['nom_image'];
+}
+
+function sumDate( $intervalle){
+    var_dump($intervalle);
+    $querry = "SELECT DATE_ADD( NOW() , INTERVAL $intervalle  DAY ) AS new_date ";
+    var_dump($querry);
+    $result = mysqli_query(base(), $querry);
+    return mysqli_fetch_assoc($result)['new_date'];
 }
