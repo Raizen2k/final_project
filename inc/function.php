@@ -63,3 +63,16 @@ function enCours($id_objet)
     }
 }
 
+function filtreParCategorie($categorie)
+{
+    $requette = "SELECT * FROM obj_objet WHERE id_categorie = '%s'";
+    $requette = sprintf($requette, $categorie);
+    echo $requette;
+    return mysqli_query(base(), $requette);
+}
+
+function getListeCategorie()
+{
+    $requette = "SELECT * FROM obj_categorie_objet";
+    return mysqli_query(base(), $requette);
+}
