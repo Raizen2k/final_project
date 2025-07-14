@@ -15,7 +15,7 @@ $categories = getListeCategorie();
 
 <body>
     <h1>Ajouter un objet</h1>
-    <form action="../traitement/traitement_ajout_objet.php" method="post">
+    <form action="../traitement/traitement_ajout.php" method="post">
         <div>
             <label for="nom_objet">Nom de l'objet:</label>
             <input type="text" id="nom_objet" name="nom_objet" required>
