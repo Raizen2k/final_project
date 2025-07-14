@@ -1,0 +1,13 @@
+creeer la base de donnees
+    membre
+        (id_membre,nom,date_de_naissance,genre,email,ville,mdp,image_profil)
+    categorie_objet
+        (id_objet,nom_categorie)
+    objet
+        (id_objet,nom_objet,id_cat,id_membre)
+    images_objet
+        (id_objet,id_image,nom_image)
+    emprunt
+        (id_emprunt,id_objet,id_membre,date_emprunt,date_retour)
+inserer les donnees
+creeer les pages
