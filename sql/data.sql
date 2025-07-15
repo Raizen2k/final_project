@@ -88,7 +88,7 @@ INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Crics hydrauliques', 3, 3),
 ('Cric bouteille', 3, 3),
 ('Micro-ondes', 4, 3),
-('Cafetière', 4, 3),
+('Cafetiere', 4, 3),
 ('Balance cuisine', 4, 3);
 
 -- Membre 4 : David
@@ -96,12 +96,12 @@ INSERT INTO obj_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Brosse lissante', 1, 4),
 ('Ponceuse', 2, 4),
 ('Meuleuse', 2, 4),
-('Tournevis électrique', 2, 4),
-('Pont élévateur', 3, 4),
-('Clé plate', 3, 4),
+('Tournevis electrique', 2, 4),
+('Pont elevateur', 3, 4),
+('Cle plate', 3, 4),
 ('Four', 4, 4),
 ('Casserole', 4, 4),
-('Poêle', 4, 4),
+('Poele', 4, 4),
 ('Autocuiseur', 4, 4);
 
 INSERT INTO obj_emprunt (id_objet, id_membre, date_emprunt, date_retour, etat) VALUES
@@ -110,7 +110,7 @@ INSERT INTO obj_emprunt (id_objet, id_membre, date_emprunt, date_retour, etat) V
 (7, 4, '2025-07-03', '2025-07-07', 0),
 (10, 1, '2025-07-04', '2025-07-08', 1),
 (13, 2, '2025-07-05', '2025-07-09', 1),
-(16, 3, '2025-07-06', '2025-07-10', 2),
+(16, 3, '2025-07-06', '2025-07-10', 1),
 (19, 4, '2025-07-07', '2025-07-11', 1),
 (22, 1, '2025-07-08', '2025-07-12', 1),
 (25, 2, '2025-07-09', '2025-07-13', 0),

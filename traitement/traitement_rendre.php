@@ -4,5 +4,5 @@ $etat=$_POST['etat'];
 include("../inc/function.php");
 session_start();
 rendre($id_objet,$etat,$_SESSION["id_membre"]);
-
+header("Location: ../pages/profil.php");
 ?>

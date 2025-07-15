@@ -4,8 +4,6 @@ session_start();
 $membre = getMembre($_SESSION['id_membre']);
 $objets = getToutObjet($membre['id_membre']);
 $encours= getObjetsEnCours($_SESSION['id_membre']);
-var_dump($encours);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +33,7 @@ var_dump($encours);
     <h2>Liste des mes emprunt en cours </h2>
     <?php while ($objetEnCours=mysqli_fetch_assoc($encours)) { ?>
             <p><?= $objetEnCours['nom_objet']?>________date_retour : 
-            <?= $objetEnCours['date_retour'] ?>________
+            <?= $objetEnCours['date_emprunt'] ?>
             <form action="../traitement/traitement_rendre.php" method="post">
                 <select name="etat">
                     <option value="0">Ok</option>

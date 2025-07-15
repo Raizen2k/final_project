@@ -202,15 +202,22 @@ function getObjetsEnCours($id_membre)
     $requette="SELECT * FROM obj_emprunt e
     JOIN  obj_objet o ON o.id_objet=e.id_objet  
     WHERE e.date_retour IS NULL AND e.id_membre='$id_membre'";
-    echo $requette;
     return mysqli_query(base() , $requette);
 
 }
 function rendre($id_objet,$etat,$id_membre)
 {
     $requette = "UPDATE obj_emprunt 
-             SET date_retour = NOW(), etat_retour = $etat 
-             WHERE id_objet = $id_objet AND id_membre = $id_membre AND date_retour IS NULL";
+             SET date_retour = '%s', etat= '$etat' 
+             WHERE id_objet = '$id_objet' AND id_membre = '$id_membre' AND date_retour IS NULL";
+     mysqli_query(base() , $requette);
+}
 
-    mysqli__query(base() , $requette);
+function getListeEmprunt()
+{
+    $requette = "SELECT e.etat,count(o.id_objet) nb FROM obj_emprunt e
+    JOIN  obj_objet o ON o.id_objet=e.id_objet  
+    JOIN obj_membres m ON m.id_membre = e.id_membre
+    WHERE e.date_retour IS NOT NULL GROUP BY e.etat";
+    return mysqli_query(base() , $requette);
 }
